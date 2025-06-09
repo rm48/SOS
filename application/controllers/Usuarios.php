@@ -34,6 +34,53 @@ class Usuarios extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
+    public function add() {
+
+        $this->form_validation->set_rules('first_name', '', 'trim|required');
+        $this->form_validation->set_rules('last_name', '', 'trim|required');
+        $this->form_validation->set_rules('email', '', 'trim|required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('username', '', 'trim|required|is_unique[users.username]');
+        $this->form_validation->set_rules('password', 'Senha', 'required|min_length[5]|max_length[255]');
+        $this->form_validation->set_rules('confirm_password', 'Confirme', 'matches[password]');
+
+        if ($this->form_validation->run()) {
+
+            $username = $this->security->xss_clean($this->input->post('username'));
+            $password = $this->security->xss_clean($this->input->post('password'));;
+            $email = $this->security->xss_clean($this->input->post('email'));;
+            
+            $additional_data = array(
+                'first_name' => $this->input->post('first_name'),
+                'last_name' => $this->input->post('last_name'),
+                'username' => $this->input->post('username'),
+                'active' => $this->input->post('active')
+            );
+            $group = array($this->input->post('perfil_usuario')); // Sets user to admin.
+            
+            $additional_data = $this->security->xss_clean($additional_data);                      
+            
+            $group = $this->security->xss_clean($group);
+            
+            if($this->ion_auth->register($username, $password, $email, $additional_data, $group)){
+                $this->session->set_flashdata('sucesso', 'Dados salvos com sucesso.');
+            }else{
+                $this->session->set_flashdata('error', 'Erro ao salvar os dados.');
+            }
+            redirect('usuarios');          
+        } else {
+            
+            //erro de validação
+
+            $data = array(
+                'titulo' => 'Cadastrar usuário',
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('usuarios/add');
+            $this->load->view('layout/footer');
+        }
+    }
+
     public function edit($usuario_id = NULL) {
 
         if (!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
@@ -71,12 +118,12 @@ class Usuarios extends CI_Controller {
 
                 $data = elements(
                         array(
-                    'first_name',
-                    'last_name',
-                    'email',
-                    'username',
-                    'active',
-                    'password'
+                            'first_name',
+                            'last_name',
+                            'email',
+                            'username',
+                            'active',
+                            'password'
                         ), $this->input->post()
                 );
 
@@ -95,18 +142,18 @@ class Usuarios extends CI_Controller {
                     $perfil_usuario_db = $this->ion_auth->get_users_groups($usuario_id)->row();
 
                     $perfil_usuario_post = $this->input->post('perfil_usuario');
-                   
-                    /*Se for diferente, atualiza o grupo*/
-                    if ($perfil_usuario_db->id  != $perfil_usuario_post) {
-                    
+
+                    /* Se for diferente, atualiza o grupo */
+                    if ($perfil_usuario_db->id != $perfil_usuario_post) {
+
                         $this->ion_auth->remove_from_group($perfil_usuario_db->id, $usuario_id);
                         $this->ion_auth->add_to_group($perfil_usuario_post, $usuario_id);
                     }
-                        
+
                     $this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
-                }else{
+                } else {
                     $this->session->set_flashdata('error', 'Erro ao salvar os dados');
-                } 
+                }
                 redirect('usuarios');
             } else {
 
@@ -122,7 +169,6 @@ class Usuarios extends CI_Controller {
             }
         }
     }
-    
 
     public function email_check($email) {
 
