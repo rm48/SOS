@@ -36,13 +36,13 @@
                          <div class="col-md-4">
                             <label>Sobrenome</label>
                             <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name; ?>">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <?php echo form_error('last_name', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                         <div class="col-md-4">
                             <label>E-mail (Login)</label>
                             <input type="email" class="form-control" name="email" placeholder="Seu e-mail (Login)" value="<?php echo $usuario->email; ?>">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <?php echo form_error('email', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                     </div>
@@ -51,7 +51,7 @@
                         <div class="col-md-4">
                             <label>Usuário</label>
                             <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <?php echo form_error('username', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         <div class="col-md-4">            
                             
@@ -85,13 +85,13 @@
                         <div class="col-md-6">
                             <label>Senha</label>
                             <input type="password" class="form-control" name="password" placeholder="Sua senha">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <?php echo form_error('password', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                         <div class="col-md-6">
                             <label>Confirme</label>
                             <input type="password" class="form-control" name="confirm_password" placeholder="Confirme sua senha">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <?php echo form_error('confirm_password', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                        
                         <input type="hidden" name="usuario_id" value="<?php echo $usuario->id ?>">
