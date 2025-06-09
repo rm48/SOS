@@ -28,7 +28,7 @@
             </div>
             <div class="card-body">
 
-                <form>
+                <form method="POST">
                     <div class="mb-3 row">
 
                         <div class="col-md-4">
@@ -53,6 +53,13 @@
                     
                     <div class="form-group row">
                         <div class="col-md-4">
+                            <label>Usuário</label>
+                            <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="col-md-4">            
+                            
+                            
                             <label>Ativo</label>
                             
                             <select class="form-control" name="active">
@@ -78,15 +85,25 @@
                         
                     </div>
                     
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Senha</label>
+                            <input type="password" class="form-control" name="password" placeholder="Sua senha">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label>Confirme</label>
+                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirme sua senha">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                       
+                        <input type="hidden" name="usuario_id" value="<?php echo $usuario->id ?>">
+                        
+                        
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                 </form>
 
             </div>
