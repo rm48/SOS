@@ -1,7 +1,4 @@
 
-
-
-
 <?php $this->load->view('layout/sidebar'); ?>
 
 
@@ -20,7 +17,6 @@
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
             </ol>
         </nav>
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -28,13 +24,13 @@
             </div>
             <div class="card-body">
 
-                <form method="POST">
+                <form method="POST" name="form_edit">
                     <div class="mb-3 row">
 
                         <div class="col-md-4">
                             <label>Nome</label>
                             <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name; ?>">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <?php echo form_error('first_name', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                          <div class="col-md-4">
