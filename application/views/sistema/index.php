@@ -17,6 +17,37 @@
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
             </ol>
         </nav>
+        
+                <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><i class="far fa-smile-wink">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div> 
+
+            </div><?php endif; ?>
+
+        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div> 
+
+            </div><?php endif; ?>
+        
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -95,13 +126,13 @@
                         
                         <div class="col-md-2">
                             <label>CEP</label>
-                            <input type="text" class="form-control-range" name="sistema_site_url" placeholder="CEP" value="<?php echo $sistema->sistema_cep; ?>">
+                            <input type="text" class="form-control-range" name="sistema_cep" placeholder="CEP" value="<?php echo $sistema->sistema_cep; ?>">
                             <?php echo form_error('sistema_cep', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                         <div class="col-md-2">
                             <label>Cidade</label>
-                            <input type="text" class="form-control-range" name="sistema_email" placeholder="Cidade" value="<?php echo $sistema->sistema_cidade; ?>">
+                            <input type="text" class="form-control-range" name="sistema_cidade" placeholder="Cidade" value="<?php echo $sistema->sistema_cidade; ?>">
                             <?php echo form_error('sistema_cidade', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         

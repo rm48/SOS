@@ -17,9 +17,7 @@
             </ol>
         </nav>
 
-        <?php if ($message = $this->session->flashdata('sucesso')): ?>
-
-            <div class="row">
+        <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
 
                 <div class="col-md-12">
 
@@ -32,13 +30,9 @@
 
                 </div> 
 
-            </div>
+            </div><?php endif; ?>
 
-        <?php endif; ?>
-
-        <?php if ($message = $this->session->flashdata('error')): ?>
-
-            <div class="row">
+        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
 
                 <div class="col-md-12">
 
@@ -51,9 +45,7 @@
 
                 </div> 
 
-            </div>
-
-        <?php endif; ?>
+            </div><?php endif; ?>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
