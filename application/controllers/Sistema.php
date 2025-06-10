@@ -17,6 +17,12 @@ class Sistema extends CI_Controller {
 
         $data = array(
             'titulo' => 'Editar informações do sistema',
+            
+            'scripts' => array(
+                'vendor/mask/jquery.mask.min.js',
+                'vendor/mask/app.js'
+            ),
+            
             'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1)),
         );
 
@@ -55,6 +61,8 @@ class Sistema extends CI_Controller {
                     'sistema_txt_ordem_servico', 
                         ), $this->input->post()
             );
+            
+            $data = html_escape($data);
             
             $this->core_model->update('sistema', $data, array('sistema_id' => 1));
             
