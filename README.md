@@ -2,6 +2,17 @@
 
 ## Sistema de Ordem de Serviço / Vendas (padrão MVC)
 
+#### Modulos:
+- Vendas
+- Cadastro
+- Estoque
+- Financeiro
+- Relatórios
+
+#### Configurações
+- Gerenciamento de usuários
+- Configurações gerais do sistema
+
 ### Tecnologias usadas:
 
 - Codeigniter 3
