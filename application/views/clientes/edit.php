@@ -44,18 +44,28 @@
                             </div>
 
                             <div class="col-md-2">
-                                <label>CPF ou CNPJ</label>
-                                <input type="text" class="form-control-range cnpj" name="cliente_cpf_cnp"  value="<?php echo $cliente->cliente_cpf_cnpj; ?>">
-                                <?php echo form_error('cliente_cpf_cnpj', '<small class="form-text text-danger">', '</small>'); ?>
+                                <?php if($cliente->cliente_tipo == 1): ?>
+                                    <label>CPF</label>
+                                    <input type="text" class="form-control-range cpf" name="cliente_cpf"  value="<?php echo $cliente->cliente_cpf_cnpj; ?>">
+                                    <?php echo form_error('cliente_cpf', '<small class="form-text text-danger">', '</small>'); ?>
+                                <?php else: ?>
+                                    <label>CNPJ</label>
+                                    <input type="text" class="form-control-range cnpj" name="cliente_cnpj"  value="<?php echo $cliente->cliente_cpf_cnpj; ?>">
+                                    <?php echo form_error('cliente_cnpj', '<small class="form-text text-danger">', '</small>'); ?>
+                                <?php endif; ?>
+                                
+                                
                             </div>
 
                             <div class="col-md-2">
-                                <label>RG ou I.E</label>
+                                <?php if($cliente->cliente_tipo == 1): ?>
+                                    <label>RG</label>
+                                <?php else: ?>
+                                    <label>Inscrição estadual</label>
+                                <?php endif; ?>
                                 <input type="text" class="form-control-range" name="cliente_rg_ie"  value="<?php echo $cliente->cliente_rg_ie; ?>">
                                 <?php echo form_error('cliente_rg_ie', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-
-
 
                         </div>
 
