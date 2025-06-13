@@ -28,10 +28,6 @@ class Clientes extends CI_Controller {
             'clientes' => $this->core_model->get_all('clientes'),
         );
 
-//        echo '<pre>';
-//        print_r($data['clientes']);
-//        exit();
-
         $this->load->view('layout/header', $data);
         $this->load->view('clientes/index');
         $this->load->view('layout/footer');
@@ -113,12 +109,6 @@ class Clientes extends CI_Controller {
 
             redirect('clientes');
 
-//                echo '<pre>';
-//                print_r($data);
-//                exit('validado');
-//                echo '<pre>';
-//                print_r($this->$data['clientes']);
-//                exit('validado');
         } else {
 
             $data = array(
@@ -129,10 +119,6 @@ class Clientes extends CI_Controller {
                     'js/clientes.js'
                 ),            
             );
-
-//                echo '<pre>';
-//                print_r($data['cliente']);
-//                exit();
 
             $this->load->view('layout/header', $data);
             $this->load->view('clientes/add');
@@ -162,7 +148,7 @@ class Clientes extends CI_Controller {
 
             $this->form_validation->set_rules('cliente_rg_ie', '', 'trim|required|max_length[20]|callback_check_rg_ie');
             $this->form_validation->set_rules('cliente_email', '', 'trim|required|valid_email|max_length[50]|callback_check_email');
-//          
+          
             if (!empty($this->input->post('cliente_telefone'))) {
                 $this->form_validation->set_rules('cliente_telefone', '', 'trim|max_length[14]|callback_check_telefone');
             }
@@ -170,8 +156,6 @@ class Clientes extends CI_Controller {
             if (!empty($this->input->post('cliente_celular'))) {
                 $this->form_validation->set_rules('cliente_celular', '', 'trim|max_length[15]|callback_check_celular');
             }
-
-
 
             $this->form_validation->set_rules('cliente_cep', '', 'trim|required|exact_length[9]');
             $this->form_validation->set_rules('cliente_endereco', '', 'trim|required|max_length[155]');
@@ -184,28 +168,6 @@ class Clientes extends CI_Controller {
 
             if ($this->form_validation->run()) {
 
-                /*
-                 * * [cliente_id] => 1
-                  [cliente_data_cadastro] => 2025-06-10 21:08:37
-                  [cliente_tipo] => 2
-                  [cliente_nome] => Lucio
-                  [cliente_sobrenome] => Souza
-                  [cliente_data_nascimento] => 2020-03-28
-                  [cliente_cpf_cnpj] => 007.129.310-82  50.941.516/0001-09 40.499.503/0001-78
-                  [cliente_rg_ie] =>50.678.741-2    734.47216-66
-                  [cliente_email] =>
-                  [cliente_telefone] =>
-                  [cliente_celular] =>
-                  [cliente_cep] =>
-                  [cliente_endereco] =>
-                  [cliente_numero_endereco] =>
-                  [cliente_bairro] =>
-                  [cliente_complemento] =>
-                  [cliente_cidade] =>
-                  [cliente_estado] =>
-                  [cliente_ativo] => 0
-                  [cliente_obs] =>
-                 */
                 $data = elements(
                         array(
                             'cliente_nome',
@@ -243,12 +205,6 @@ class Clientes extends CI_Controller {
 
                 redirect('clientes');
 
-//                echo '<pre>';
-//                print_r($data);
-//                exit('validado');
-//                echo '<pre>';
-//                print_r($this->$data['clientes']);
-//                exit('validado');
             } else {
 
                 $data = array(
@@ -259,10 +215,6 @@ class Clientes extends CI_Controller {
                     ),
                     'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
                 );
-
-//                echo '<pre>';
-//                print_r($data['cliente']);
-//                exit();
 
                 $this->load->view('layout/header', $data);
                 $this->load->view('clientes/edit');
