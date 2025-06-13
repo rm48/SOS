@@ -75,11 +75,11 @@ class Core_model extends CI_Model{
         }                
     }
     
-    public function delete($tabela = NULL, $data = NULL) {
+    public function delete($tabela = NULL, $condicao = NULL) {
         
         $this->db->db_debug = FALSE;
         
-        if($tabela && is_array($data)){
+        if($tabela && is_array($condicao)){
             $status = $this->db->delete($tabela, $condicao);
             
             $error = $this->db->error();
