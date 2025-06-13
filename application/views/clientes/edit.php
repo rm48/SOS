@@ -34,7 +34,7 @@
                             <div class="col-md-4">
                                 <label>Nome</label>
                                 <input type="text" class="form-control-range" name="cliente_nome"  value="<?php echo $cliente->cliente_nome; ?>">
-                                <?php echo form_error('cliente_name', '<small class="form-text text-danger">', '</small>'); ?>
+                                <?php echo form_error('cliente_nome', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="col-md-4">
