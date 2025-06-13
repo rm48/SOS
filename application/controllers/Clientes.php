@@ -44,53 +44,32 @@ class Clientes extends CI_Controller {
             redirect('clientes');
         } else {
 
-            /*
-             * * [cliente_id] => 1
-              [cliente_data_cadastro] => 2025-06-10 21:08:37
-              [cliente_tipo] => 2
-              [cliente_nome] => Lucio
-              [cliente_sobrenome] => Souza
-              [cliente_data_nascimento] => 2020-03-28
-              [cliente_cpf_cnpj] => 007.129.310-82  50.941.516/0001-09 40.499.503/0001-78
-              [cliente_rg_ie] =>50.678.741-2    734.47216-66
-              [cliente_email] =>
-              [cliente_telefone] =>
-              [cliente_celular] =>
-              [cliente_cep] =>
-              [cliente_endereco] =>
-              [cliente_numero_endereco] =>
-              [cliente_bairro] =>
-              [cliente_complemento] =>
-              [cliente_cidade] =>
-              [cliente_estado] =>
-              [cliente_ativo] => 0
-              [cliente_obs] =>
-             */
+
             $this->form_validation->set_rules('cliente_nome', '', 'trim|required|min_length[4]|max_length[45]');
             $this->form_validation->set_rules('cliente_sobrenome', '', 'trim|required|min_length[4]|max_length[150]');
             $this->form_validation->set_rules('cliente_data_nascimento', '', 'required');
-            
+
             $cliente_tipo = $this->input->post('cliente_tipo');
-                
-            if($cliente_tipo == 1){
+
+            if ($cliente_tipo == 1) {
                 $this->form_validation->set_rules('cliente_cpf', '', 'trim|required|exact_length[14]|callback_valida_cpf');
-            }else{
+            } else {
                 $this->form_validation->set_rules('cliente_cnpj', '', 'trim|required|exact_length[18]|callback_valida_cnpj');
             }
-                     
-            $this->form_validation->set_rules('cliente_rg_ie', '', 'trim|required|max_length[20]|callback_check_rg_ie');          
+
+            $this->form_validation->set_rules('cliente_rg_ie', '', 'trim|required|max_length[20]|callback_check_rg_ie');
             $this->form_validation->set_rules('cliente_email', '', 'trim|required|valid_email|max_length[50]|callback_check_email');
 //          
-            if(!empty($this->input->post('cliente_telefone'))){
+            if (!empty($this->input->post('cliente_telefone'))) {
                 $this->form_validation->set_rules('cliente_telefone', '', 'trim|max_length[14]|callback_check_telefone');
             }
-            
-            if(!empty($this->input->post('cliente_celular'))){
+
+            if (!empty($this->input->post('cliente_celular'))) {
                 $this->form_validation->set_rules('cliente_celular', '', 'trim|max_length[15]|callback_check_celular');
             }
-            
-            
-            
+
+
+
             $this->form_validation->set_rules('cliente_cep', '', 'trim|required|exact_length[9]');
             $this->form_validation->set_rules('cliente_endereco', '', 'trim|required|max_length[155]');
             $this->form_validation->set_rules('cliente_numero_endereco', '', 'trim|max_length[20]');
@@ -102,9 +81,73 @@ class Clientes extends CI_Controller {
 
             if ($this->form_validation->run()) {
 
+                /*
+                 * * [cliente_id] => 1
+                  [cliente_data_cadastro] => 2025-06-10 21:08:37
+                  [cliente_tipo] => 2
+                  [cliente_nome] => Lucio
+                  [cliente_sobrenome] => Souza
+                  [cliente_data_nascimento] => 2020-03-28
+                  [cliente_cpf_cnpj] => 007.129.310-82  50.941.516/0001-09 40.499.503/0001-78
+                  [cliente_rg_ie] =>50.678.741-2    734.47216-66
+                  [cliente_email] =>
+                  [cliente_telefone] =>
+                  [cliente_celular] =>
+                  [cliente_cep] =>
+                  [cliente_endereco] =>
+                  [cliente_numero_endereco] =>
+                  [cliente_bairro] =>
+                  [cliente_complemento] =>
+                  [cliente_cidade] =>
+                  [cliente_estado] =>
+                  [cliente_ativo] => 0
+                  [cliente_obs] =>
+                 */
+                $data = elements(
+                        array(
+                            'cliente_nome',
+                            'cliente_sobrenome',
+                            'cliente_data_nascimento',
+                            'cliente_rg_ie',
+                            'cliente_email',
+                            'cliente_telefone',
+                            'cliente_celular',
+                            'cliente_endereco',
+                            'cliente_numero_endereco',
+                            'cliente_complemento',
+                            'cliente_bairro',
+                            'cliente_cep',
+                            'cliente_cidade',
+                            'cliente_estado',
+                            'cliente_ativo',
+                            'cliente_obs',
+                            'cliente_tipo',
+                        ), $this->input->post()
+                );
+                
+                if($cliente_tipo == 1){
+                    
+                    $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cpf');
+                    
+                }else{
+                     $data['cliente_cpf_cnpj'] = $this->input->post('cliente_cnpj');
+                }
+                
+                $data['cliente_estado'] = strtoupper($this->input->post('cliente_estado'));
+                
+                $data = html_escape($data);
+                
+                $this->core_model->update('clientes', $data, array('cliente_id' => $cliente_id));
+                
+                redirect('clientes');
+                
+//                echo '<pre>';
+//                print_r($data);
+//                exit('validado');
+
 //                echo '<pre>';
 //                print_r($this->$data['clientes']);
-                exit('validado');
+//                exit('validado');
             } else {
 
                 $data = array(
@@ -115,7 +158,7 @@ class Clientes extends CI_Controller {
                     ),
                     'cliente' => $this->core_model->get_by_id('clientes', array('cliente_id' => $cliente_id)),
                 );
-                
+
 //                echo '<pre>';
 //                print_r($data['cliente']);
 //                exit();
@@ -126,55 +169,55 @@ class Clientes extends CI_Controller {
             }
         }
     }
-    
-    public function check_rg_ie($cliente_rg_ie){
-        
+
+    public function check_rg_ie($cliente_rg_ie) {
+
         $cliente_id = $this->input->post('cliente_id');
-        
-        if($this->core_model->get_by_id('clientes', array('cliente_rg_ie' => $cliente_rg_ie,'cliente_id !=' => $cliente_id))){
+
+        if ($this->core_model->get_by_id('clientes', array('cliente_rg_ie' => $cliente_rg_ie, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_rg_ie', 'Esse documento já existe');
             return FALSE;
-        }else{
+        } else {
             return TRUE;
         }
     }
-    
-    public function check_email($cliente_email){
-        
+
+    public function check_email($cliente_email) {
+
         $cliente_id = $this->input->post('cliente_id');
-        
-        if($this->core_model->get_by_id('clientes', array('cliente_email' => $cliente_email,'cliente_id !=' => $cliente_id))){
+
+        if ($this->core_model->get_by_id('clientes', array('cliente_email' => $cliente_email, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_email', 'Esse e-mail já existe');
             return FALSE;
-        }else{
+        } else {
             return TRUE;
         }
     }
-    
-    public function check_telefone($cliente_telefone){
-        
+
+    public function check_telefone($cliente_telefone) {
+
         $cliente_id = $this->input->post('cliente_id');
-        
-        if($this->core_model->get_by_id('clientes', array('cliente_telefone' => $cliente_telefone,'cliente_id !=' => $cliente_id))){
+
+        if ($this->core_model->get_by_id('clientes', array('cliente_telefone' => $cliente_telefone, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_telefone', 'Esse telefone já existe');
             return FALSE;
-        }else{
+        } else {
             return TRUE;
         }
     }
-    
-    public function check_celular($cliente_celular){
-        
+
+    public function check_celular($cliente_celular) {
+
         $cliente_id = $this->input->post('cliente_id');
-        
-        if($this->core_model->get_by_id('clientes', array('cliente_celular' => $cliente_celular,'cliente_id !=' => $cliente_id))){
+
+        if ($this->core_model->get_by_id('clientes', array('cliente_celular' => $cliente_celular, 'cliente_id !=' => $cliente_id))) {
             $this->form_validation->set_message('check_telefone', 'Esse celular já existe');
             return FALSE;
-        }else{
+        } else {
             return TRUE;
         }
     }
-    
+
     public function valida_cpf($cpf) {
 
         if ($this->input->post('cliente_id')) {
@@ -209,8 +252,8 @@ class Clientes extends CI_Controller {
             return TRUE;
         }
     }
-    
-     public function valida_cnpj($cnpj) {
+
+    public function valida_cnpj($cnpj) {
 
         // Verifica se um número foi informado
         if (empty($cnpj)) {
@@ -293,8 +336,5 @@ class Clientes extends CI_Controller {
             }
         }
     }
-
-    
-    
 
 }
