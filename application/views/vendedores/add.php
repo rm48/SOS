@@ -13,7 +13,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo base_url('fornecedores'); ?>">Fornecedores</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('vendedores'); ?>">Vendedores</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
             </ol>
         </nav>
@@ -21,73 +21,56 @@
         <div class="card shadow mb-4">
             <div class="card-body">
 
-                <form method="POST" name="form_add">
-                    <?php if (isset($ffornecedor)): ?>
-                        <p><strong><i class="fas fa-clock">&nbsp;&nbsp;Última alteração:&nbsp;</i></strong><?php echo formata_data_banco_com_hora($fornecedor->fornecedor_data_alteracao); ?></p>
-                    <?php endif; ?>
+                <form method="POST" name="form_add">                 
+
                     <fieldset class="mt-4 border p-2">
 
-                        <legend class="font-small"><i class="fas fa-user-tag">&nbsp;Dados principais</i></legend>
+                        <legend class="font-small"><i class="fas fa-user-secret">&nbsp;Dados pessoais</i></legend>
 
                         <div class="mb-3 row">
 
                             <div class="col-md-6">
-                                <label>Razão social</label>
-                                <input type="text" class="form-control-range" name="fornecedor_razao"  value="<?php echo set_value('fornecedor_razao'); ?>">
-                                <?php echo form_error('fornecedor_razao', '<small class="form-text text-danger">', '</small>'); ?>
+                                <label>Nome completo</label>
+                                <input type="text" class="form-control-range" name="vendedor_nome_completo"  value="<?php echo set_value('vendedor_nome_completo'); ?>">
+                                <?php echo form_error('vendedor_nome_completo', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
-                            <div class="col-md-6">
-                                <label>Nome fantasia</label>
-                                <input type="text" class="form-control-range" name="fornecedor_nome_fantasia"  value="<?php echo set_value('fornecedor_nome_fantasia'); ?>">
-                                <?php echo form_error('fornecedor_nome_fantasia', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-
-                        </div>
-
-                        <div class="mb-3 row">
-
-                            <div class="col-md-4">
-                                <label>CNPJ</label>
-                                <input type="text" class="form-control-range cnpj" name="fornecedor_cnpj"  value="<?php echo set_value('fornecedor_cnpj'); ?>">
-                                <?php echo form_error('fornecedor_cnpj', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label>Inscrição estadual</label>
-                                <input type="text" class="form-control-range" name="fornecedor_ie"  value="<?php echo set_value('fornecedor_ie'); ?>">
-                                <?php echo form_error('fornecedor_ie', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label>Telefone fixo</label>
-                                <input type="text" class="form-control-range sp_celphones" name="fornecedor_telefone"  value="<?php echo set_value('fornecedor_telefone'); ?>">
-                                <?php echo form_error('fornecedor_telefone', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-
-                        </div>
-
-                        <div class="mb-3 row">
-
-                            <div class="col-md-4">
-                                <label>Celular</label>
-                                <input type="text" class="form-control-range sp_celphones" name="fornecedor_celular"  value="<?php echo set_value('fornecedor_celular'); ?>">
-                                <?php echo form_error('fornecedor_celular', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label>E-mail</label>
-                                <input type="email" class="form-control-range" name="fornecedor_email"  value="<?php echo set_value('fornecedor_emai'); ?>">
-                                <?php echo form_error('fornecedor_email', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label>Nome do contato</label>
-                                <input type="text" class="form-control-range" name="fornecedor_contato"  value="<?php echo set_value('fornecedor_contato'); ?>">
-                                <?php echo form_error('fornecedor_contato', '<small class="form-text text-danger">', '</small>'); ?>
+                            <div class="col-md-3">
+                                <label>CPF</label>
+                                <input type="text" class="form-control-range cpf" name="vendedor_cpf"  value="<?php echo set_value('vendedor_cpf'); ?>">
+                                <?php echo form_error('vendedor_cpf', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             
+                            <div class="col-md-3">
+                                <label>RG</label>
+                                <input type="text" class="form-control-range" name="vendedor_rg"  value="<?php echo set_value('vendedor_rg'); ?>">
+                                <?php echo form_error('vendedor_rg', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>
+
                         </div>
+
+                        <div class="mb-3 row">
+                            
+                            <div class="col-md-6">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control-range" name="vendedor_email"  value="<?php echo set_value('vendedor_email'); ?>">
+                                <?php echo form_error('vendedor_email', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label>Telefone fixo</label>
+                                <input type="text" class="form-control-range sp_celphones" name="vendedor_telefone"  value="<?php echo set_value('vendedor_telefone'); ?>">
+                                <?php echo form_error('vendedor_telefone', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label>Celular</label>
+                                <input type="text" class="form-control-range sp_celphones" name="vendedor_celular"  value="<?php echo set_value('vendedor_celular'); ?>">
+                                <?php echo form_error('vendedor_celular', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>
+
+                        </div>
+
 
                     </fieldset>
 
@@ -97,20 +80,20 @@
                         <div class="mb-3 row">
                             <div class="col-md-6">
                                 <label>Endereço</label>
-                                <input type="text" class="form-control-range" name="fornecedor_endereco" value="<?php echo set_value('fornecedor_endereco'); ?>">
-                                <?php echo form_error('fornecedor_endereco', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range" name="vendedor_endereco" value="<?php echo set_value('vendedor_endereco'); ?>">
+                                <?php echo form_error('vendedor_endereco', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="col-md-2">
                                 <label>Número</label>
-                                <input type="text" class="form-control-range" name="fornecedor_numero_endereco" value="<?php echo set_value('fornecedor_numero_endereco'); ?>">
-                                <?php echo form_error('fornecedor_numero_endereco', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range" name="vendedor_numero_endereco" value="<?php echo set_value('vendedor_numero_endereco'); ?>">
+                                <?php echo form_error('vendedor_numero_endereco', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="col-md-4">
                                 <label>Complemento</label>
-                                <input type="text" class="form-control-range" name="fornecedor_complemento" value="<?php echo set_value('fornecedor_complemento'); ?>">
-                                <?php echo form_error('fornecedor_complemento', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range" name="vendedor_complemento" value="<?php echo set_value('vendedor_complemento'); ?>">
+                                <?php echo form_error('vendedor_complemento', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                         </div>
@@ -118,25 +101,25 @@
                         <div class="mb-3 row">
                             <div class="col-md-2">
                                 <label>CEP</label>
-                                <input type="text" class="form-control-range cep" name="fornecedor_cep" value="<?php echo set_value('fornecedor_cep'); ?>">
-                                <?php echo form_error('fornecedor_cep', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range cep" name="vendedor_cep" value="<?php echo set_value('vendedor_cep'); ?>">
+                                <?php echo form_error('vendedor_cep', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="col-md-4">
                                 <label>Bairro</label>
-                                <input type="text" class="form-control-range" name="fornecedor_bairro" value="<?php echo set_value('fornecedor_bairro'); ?>">
-                                <?php echo form_error('fornecedor_bairro', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range" name="vendedor_bairro" value="<?php echo set_value('vendedor_bairro'); ?>">
+                                <?php echo form_error('vendedor_bairro', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-5">
                                 <label>Cidade</label>
-                                <input type="text" class="form-control-range" name="fornecedor_cidade" value="<?php echo set_value('fornecedor_cidade'); ?>">
-                                <?php echo form_error('fornecedor_cidade', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range" name="vendedor_cidade" value="<?php echo set_value('vendedor_cidade'); ?>">
+                                <?php echo form_error('vendedor_cidade', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="col-md-1">
                                 <label>UF</label>
-                                <input type="text" class="form-control-range uf" name="fornecedor_estado" value="<?php echo set_value('fornecedor_estado'); ?>">
-                                <?php echo form_error('fornecedor_estado', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control-range uf" name="vendedor_estado" value="<?php echo set_value('vendedor_estado'); ?>">
+                                <?php echo form_error('vendedor_estado', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                         </div>
@@ -148,20 +131,24 @@
 
                         <div class="mb-3 row">
 
-                            <div class="col-md-2">
-                                <label>Cliente ativo</label>
-                                <select class="form-control-range"name="fornecedor_ativo" value="<?php echo $fornecedor->fornecedor_ativo; ?>">
+                            <div class="col-md-3">
+                                <label>Vendedor ativo</label>
+                                <select class="form-control-range"name="vendedor_ativo">
                                     <option value="0">Não</option>
                                     <option value="1">Sim</option>
                                 </select>                 
                             </div>
-
-                            <div class="col-md-10">
-                                <label>Observações</label>
-                                <textarea class="form-control-range" name="fornecedor_obs"><?php echo set_value('fornecedor_obs'); ?></textarea>
-                                <?php echo form_error('fornecedor_obs', '<small class="form-text text-danger">', '</small>'); ?>
+                            
+                            <div class="col-md-3">
+                                <label>Código</label>
+                                <input type="text" class="form-control-range" name="vendedor_codigo" value="<?php echo $vendedor_codigo ?>"readonly="">                          
                             </div>
 
+                            <div class="col-md-6">
+                                <label>Observações</label>
+                                <textarea class="form-control-range" name="vendedor_obs"><?php echo set_value('vendedor_obs'); ?></textarea>
+                                <?php echo form_error('vendedor_obs', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>
                         </div> 
                     </fieldset>
 
