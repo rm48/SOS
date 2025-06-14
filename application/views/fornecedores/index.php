@@ -62,7 +62,6 @@
                                 <th>CNPJ</th>
                                 <th>Telefone fixo</th>
                                 <th>E-mail</th>
-                                <th>Tipo fornecedor</th>
                                 <th class="text-center pr-2">Ativo</th>
                                 <th class="text-right pr-4">Ações</th>
                             </tr>
