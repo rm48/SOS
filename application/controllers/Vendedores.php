@@ -47,10 +47,10 @@ class Vendedores extends CI_Controller {
 
             $this->form_validation->set_rules('vendedor_nome_completo', '', 'trim|required|min_length[4]|max_length[200]');
             $this->form_validation->set_rules('vendedor_cpf', '', 'trim|required|exact_length[14]|callback_valida_cpf');
-//            $this->form_validation->set_rules('vendedor_rg', '', 'trim|required|max_length[20]|callback_check_rg');
-//            $this->form_validation->set_rules('vendedor_email', '', 'trim|required|valid_email|max_length[50]|callback_check_email');
-//            $this->form_validation->set_rules('vendedor_telefone', '', 'trim|required|max_length[14]|callback_check_telefone');
-//            $this->form_validation->set_rules('vendedor_celular', '', 'trim|required|max_length[15]|callback_check_celular');
+            $this->form_validation->set_rules('vendedor_rg', '', 'trim|required|max_length[20]|callback_check_rg');
+            $this->form_validation->set_rules('vendedor_email', '', 'trim|required|valid_email|max_length[50]|callback_check_email');
+            $this->form_validation->set_rules('vendedor_telefone', '', 'trim|required|max_length[14]|callback_check_telefone');
+            $this->form_validation->set_rules('vendedor_celular', '', 'trim|required|max_length[15]|callback_check_celular');
 
             $this->form_validation->set_rules('vendedor_cep', '', 'trim|required|exact_length[9]');
             $this->form_validation->set_rules('vendedor_endereco', '', 'trim|required|max_length[155]');
@@ -92,8 +92,9 @@ class Vendedores extends CI_Controller {
 
                 $this->core_model->update('vendedores', $data, array('vendedor_id' => $vendedor_id));
 
-                redirect('vendedores');
-            } else {
+                redirect('vendedores');                             
+            } 
+            else {
 
 
                 //erro de validação
@@ -107,8 +108,6 @@ class Vendedores extends CI_Controller {
                     'vendedor' => $this->core_model->get_by_id('vendedores', array('vendedor_id' => $vendedor_id)),
                 );
 
-
-
                 $this->load->view('layout/header', $data);
                 $this->load->view('vendedores/edit');
                 $this->load->view('layout/footer');
@@ -116,12 +115,12 @@ class Vendedores extends CI_Controller {
         }
     }
     
-    public function check_ie($vendedor_ie) {
+    public function check_rg($vendedor_rg) {
 
         $vendedor_id = $this->input->post('vendedor_id');
 
-        if ($this->core_model->get_by_id('fornecedores', array('vendedor_ie' => $vendedor_ie, 'vendedor_id !=' => $vendedor_id))) {
-            $this->form_validation->set_message('check_ie', 'Esta inscrição estadual já existe');
+        if ($this->core_model->get_by_id('vendedores', array('vendedor_rg' => $vendedor_rg, 'vendedor_id !=' => $vendedor_id))) {
+            $this->form_validation->set_message('check_rg', 'Este RG já existe');
             return FALSE;
         } else {
             return TRUE;
@@ -132,7 +131,7 @@ class Vendedores extends CI_Controller {
 
         $vendedor_id = $this->input->post('vendedor_id');
 
-        if ($this->core_model->get_by_id('fornecedores', array('vendedor_email' => $vendedor_email, 'vendedor_id !=' => $vendedor_id))) {
+        if ($this->core_model->get_by_id('vendedores', array('vendedor_email' => $vendedor_email, 'vendedor_id !=' => $vendedor_id))) {
             $this->form_validation->set_message('check_email', 'Esse e-mail já existe');
             return FALSE;
         } else {
@@ -144,7 +143,7 @@ class Vendedores extends CI_Controller {
 
         $vendedor_id = $this->input->post('vendedor_id');
 
-        if ($this->core_model->get_by_id('fornecedores', array('vendedor_telefone' => $vendedor_telefone, 'vendedor_id !=' => $vendedor_id))) {
+        if ($this->core_model->get_by_id('vendedores', array('vendedor_telefone' => $vendedor_telefone, 'vendedor_id !=' => $vendedor_id))) {
             $this->form_validation->set_message('check_telefone', 'Esse telefone já existe');
             return FALSE;
         } else {
@@ -156,7 +155,7 @@ class Vendedores extends CI_Controller {
 
         $vendedor_id = $this->input->post('vendedor_id');
 
-        if ($this->core_model->get_by_id('fornecedores', array('vendedor_celular' => $vendedor_celular, 'vendedor_id !=' => $vendedor_id))) {
+        if ($this->core_model->get_by_id('vendedores', array('vendedor_celular' => $vendedor_celular, 'vendedor_id !=' => $vendedor_id))) {
             $this->form_validation->set_message('check_celular  ', 'Esse celular já existe');
             return FALSE;
         } else {
@@ -170,7 +169,7 @@ class Vendedores extends CI_Controller {
 
             $vendedor_id = $this->input->post('vendedor_id');
 
-            if ($this->core_model->get_by_id('vendedores', array('vendedor_id !=' => $vendedor_id, 'vendedor_cpf_cnpj' => $cpf))) {
+            if ($this->core_model->get_by_id('vendedores', array('vendedor_id !=' => $vendedor_id, 'vendedor_cpf' => $cpf))) {
                 $this->form_validation->set_message('valida_cpf', 'Este CPF já existe');
                 return FALSE;
             }
@@ -200,13 +199,13 @@ class Vendedores extends CI_Controller {
     }
     
     public function del($vendedor_id = NULL) {
-        if(!$vendedor_id || !$this->core_model->get_by_id('fornecedores', array('vendedor_id' => $vendedor_id))) {
+        if(!$vendedor_id || !$this->core_model->get_by_id('vendedores', array('vendedor_id' => $vendedor_id))) {
             $this->session->set_flashdata('error', 'Fornecedor não encontrado');
-            redirect('fornecedores');
+            redirect('vendedores');
         } else {
             
-            $this->core_model->delete('fornecedores', array('vendedor_id' => $vendedor_id));
-            redirect('fornecedores');
+            $this->core_model->delete('vendedores', array('vendedor_id' => $vendedor_id));
+            redirect('vendedores');
         }
     }
 

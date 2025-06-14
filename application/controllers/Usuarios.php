@@ -92,18 +92,7 @@ class Usuarios extends CI_Controller {
             redirect(usuarios);
         } else {
 
-            /*
-             * 
-              [first_name] => Admin
-              [last_name] => istrator
-              [email] => admin@admin.com
-              [username] => administrator
-              [active] => 1
-              [perfil_usuario] => 1
-              [password] =>
-              [confirm_password] =>
-              [usuario_id] => 1
-             */
+           
 
 //            echo '<pre>';
 //            print_r($this->input->post());

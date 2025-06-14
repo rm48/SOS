@@ -50,7 +50,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a title="Cadastrar novo vendedor" href="<?php echo base_url('vendedores/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-user-o"></i>&nbsp;Novo</a>
+                <a title="Cadastrar novo vendedor" href="<?php echo base_url('vendedores/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-user-plus"></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
