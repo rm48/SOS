@@ -149,7 +149,7 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-2">
-                                <label>ornecedor ativo</label>
+                                <label>Fornecedor ativo</label>
                                 <select class="form-control-range"name="fornecedor_ativo" value="<?php echo $fornecedor->fornecedor_ativo; ?>">
                                     <option value="0" <?php echo ($fornecedor->fornecedor_ativo == 0 ? 'selected' : ''); ?>>Não</option>
                                     <option value="1" <?php echo ($fornecedor->fornecedor_ativo == 1 ? 'selected' : ''); ?>>Sim</option>

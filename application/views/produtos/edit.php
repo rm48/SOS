@@ -50,7 +50,7 @@
                                 <label>Marca</label>
                                 <select class="form-control-range" name="produto_marca_id">
                                     <?php foreach ($marcas as $marca): ?>
-                                    <option title="<?php echo ($marca->marca_ativa == 0 ? 'Indisponível' : 'Marca ativa'); ?>"value="<?php echo $marca->marca_id ?>" <?php echo ($marca->marca_id == $produto->produto_marca_id ? 'selected' : '') ?> <?php echo ($marca->marca_ativa == 0 ? 'disabled' : ''); ?>><?php echo ($marca->marca_ativa == 0 ? $marca->marca_nome . '&nbsp; -> &nbsp;Inativa' : $marca->marca_nome) ?></option>
+                                    <option value="<?php echo $marca->marca_id ?>" <?php echo $marca->marca_nome; ?>></option>
                                     <?php endforeach; ?>
                                 </select>                               
                             </div>
@@ -59,7 +59,7 @@
                                 <label>Categoria</label>
                                 <select class="form-control-range" name="produto_marca_id">
                                     <?php foreach ($categorias as $categoria): ?>
-                                        <option title="<?php echo ($categoria->categoria_ativa == 0 ? 'Indisponível' : 'Categoria ativa'); ?>"value="<?php echo $categoria->categoria_id ?>" <?php echo ($categoria->categoria_id == $produto->produto_categoria_id ? 'selected' : '') ?> <?php echo ($categoria->categoria_ativa == 0 ? 'disabled' : ''); ?>><?php echo ($categoria->categoria_ativa == 0 ? $categoria->categoria_nome . '&nbsp; -> &nbsp;Inativa' : $categoria->categoria_nome) ?></option>
+                                        <option value="<?php echo $categoria->categoria_id ?>" <?php echo ($categoria->categoria_id == $produto->produto_categoria_id ? 'selected' : '') ?>><?php echo $categoria->categoria_nome ?></option>
                                     <?php endforeach; ?>
                                 </select>                              
                             </div>
@@ -68,7 +68,7 @@
                                 <label>Fornecedor</label>
                                 <select class="form-control-range" name="produto_marca_id">
                                     <?php foreach ($fornecedores as $fornecedor): ?>
-                                        <option title="<?php echo ($fornecedor->fornecedor_ativo == 0 ? 'Indisponível' : 'Fornecedor ativo'); ?>"value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $produto->produto_fornecedor_id ? 'selected' : '') ?> <?php echo ($fornecedor->fornecedor_ativo == 0 ? 'disabled' : ''); ?>><?php echo ($fornecedor->fornecedor_ativo == 0 ? $fornecedor->fornecedor_nome_fantasia . '&nbsp; -> &nbsp;Inativo' : $fornecedor->fornecedor_nome_fantasia) ?></option>
+                                        <option value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $produto->produto_fornecedor_id ? 'selected' : '') ?>><php echo $fornecedor->fornecedor_nome_fantasia ?></option>
                                     <?php endforeach; ?>
                                 </select>                              
                             </div>
