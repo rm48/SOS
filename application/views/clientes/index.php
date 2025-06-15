@@ -50,7 +50,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a title="Cadastrar novo cliente" href="<?php echo base_url('clientes/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-user-tie"></i>&nbsp;Novo</a>
+                <a title="Cadastrar novo cliente" href="<?php echo base_url('clientes/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -74,8 +74,8 @@
                                     <td><?php echo ($cliente->cliente_tipo == 1 ? 'Pessoa física' : 'pessoa jurídica') ?></td>
                                     <td class="text-center"><?php echo ($cliente->cliente_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
                                     <td class="text-right">
-                                        <a title="Editar" href="<?php echo base_url('clientes/edit/' . $cliente->cliente_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#cliente-<?php echo $cliente->cliente_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                                        <a title="Editar" href="<?php echo base_url('clientes/edit/' . $cliente->cliente_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#cliente-<?php echo $cliente->cliente_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
                                     </td>
 
                                 </tr>

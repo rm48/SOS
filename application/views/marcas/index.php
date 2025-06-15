@@ -50,7 +50,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a title="Cadastrar novo serviço" href="<?php echo base_url('marcas/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
+                <a title="Cadastrar nova marca" href="<?php echo base_url('marcas/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -59,7 +59,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Marca</th>
-                                <th class="text-center pr-2">Ativo</th>
+                                <th class="text-center pr-2">Ativa</th>
                                 <th class="text-right pr-4">Ações</th>
                             </tr>
                         </thead>                
@@ -70,8 +70,8 @@
                                     <td><?php echo $marca->marca_nome?></td>                    
                                     <td class="text-center"><?php echo ($marca->marca_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
                                     <td class="text-right">
-                                        <a title="Editar" href="<?php echo base_url('marcas/edit/' . $marca->marca_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#fornecedor-<?php echo $marca->marca_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+                                        <a title="Editar" href="<?php echo base_url('marcas/edit/' . $marca->marca_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#fornecedor-<?php echo $marca->marca_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
                                     </td>
 
                                 </tr>
