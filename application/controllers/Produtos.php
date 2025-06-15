@@ -11,7 +11,7 @@ class Produtos extends CI_Controller {
             $this->session->set_flashdata('info', 'Sua sessão expirou.');
             redirect('login');
         }
-        
+
         $this->load->model('produtos_model');
     }
 
@@ -29,7 +29,7 @@ class Produtos extends CI_Controller {
             ),
             'produtos' => $this->produtos_model->get_all(),
         );
-        
+
 //        echo '<pre>';
 //        print_r($data['produtos']);
 //        exit();
@@ -38,4 +38,30 @@ class Produtos extends CI_Controller {
         $this->load->view('produtos/index');
         $this->load->view('layout/footer');
     }
+
+    public function edit($produto_id = NULL) {
+
+        if (!$produto_id || !$this->core_model->get_by_id('produtos', array('produto_id' => $produto_id))) {
+            $this->session->set_flashdata('error', 'Produto não encontrado');
+            redirect('produtos');
+        } else {
+
+            $data = array(
+                'titulo' => 'Atualizar produto',
+                'scripts' => array(
+                    'vendor/mask/jquery.mask.min.js',
+                    'vendor/mask/app.js'
+                ),
+                'produto' => $this->core_model->get_by_id('produtos', array('produto_id' => $produto_id)),
+                'marcas' => $this->core_model->get_all('marcas'),
+                'categorias' => $this->core_model->get_all('categorias'),
+                'fornecedores' => $this->core_model->get_all('fornecedores'),
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('produtos/edit');
+            $this->load->view('layout/footer');
+        }
+    }
+
 }
