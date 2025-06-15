@@ -1,6 +1,6 @@
 $(function () {
-    $('.money').mask('#.##0,00', {reverse: true});
-    $('.money2').mask('#,##0.00', {reverse: true});
+    $('.money').mask('#.##0,00',{reverse: true});
+    $('.money2').mask('#,##0.00',{reverse: true});
     $('.cep').mask('00000-000');
     $('.cpf').mask('000.000.000-00',{reverse: true});
     $('.pis').mask('000.00000.00-0',{reverse: true});

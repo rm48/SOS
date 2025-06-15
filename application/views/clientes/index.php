@@ -90,7 +90,7 @@
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">O usuário será excluído do sistema.</div>
+                                        <div class="modal-body">O cliente será excluído do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
                                             <a class="btn btn-danger btn-sm" href="<?php echo base_url('clientes/del/'.$cliente->cliente_id); ?>">Sim</a>
