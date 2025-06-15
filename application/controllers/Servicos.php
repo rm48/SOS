@@ -28,10 +28,6 @@ class Servicos extends CI_Controller {
             'servicos' => $this->core_model->get_all('servicos'),
         );
 
-//        echo '<pre>';
-//        print_r($data['servicos']);
-//        exit();
-
         $this->load->view('layout/header', $data);
         $this->load->view('servicos/index');
         $this->load->view('layout/footer');
