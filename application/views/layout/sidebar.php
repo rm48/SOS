@@ -35,8 +35,7 @@
         </div>
       </li>
       
-      
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-boxes"></i>
           <span>Estoque</span>
@@ -47,6 +46,20 @@
             <a title="Gerenciar marcas"class="collapse-item" href="<?php echo base_url('marcas'); ?>"><i class="fas fa-registered text-gray-900"></i>&nbsp;&nbsp;Marcas</a>
             <a title="Gerenciar produtos"class="collapse-item" href="<?php echo base_url('produtos'); ?>"><i class="fas fa-box-open text-gray-900"></i>&nbsp;&nbsp;Produtos</a>
             <a title="Gerenciar categorias"class="collapse-item" href="<?php echo base_url('categorias'); ?>"><i class="fas fa-bookmark text-gray-900"></i>&nbsp;&nbsp;Categorias</a>
+          </div>
+        </div>
+      </li>
+      
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-calculator"></i>
+          <span>Financeiro</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Escolha uma opção:</h6>
+            <a title="Gerenciar contas a pagar"class="collapse-item" href="<?php echo base_url('pagar'); ?>"><i class="fas fa-file-excel text-gray-900"></i>&nbsp;&nbsp;Contas a pagar</a>
+  
           </div>
         </div>
       </li>  
