@@ -30,10 +30,6 @@ class Produtos extends CI_Controller {
             'produtos' => $this->produtos_model->get_all(),
         );
 
-//        echo '<pre>';
-//        print_r($data['produtos']);
-//        exit();
-
         $this->load->view('layout/header', $data);
         $this->load->view('produtos/index');
         $this->load->view('layout/footer');
@@ -53,14 +49,32 @@ class Produtos extends CI_Controller {
             $this->form_validation->set_rules('produto_qtde_estoque', 'Quantidade em estoque', 'required');
             $this->form_validation->set_rules('produto_obs', 'Observação', 'max_length[255]');
 
-
-
             if ($this->form_validation->run()) {
 
-                exit('validado');
-            } else {
+                $data = elements(
+                        array(
+                            'produto_codigo',
+                            'produto_categoria_id',
+                            'produto_marca_id',
+                            'produto_fornecedor_id',
+                            'produto_unidade',
+                            'produto_descricao',
+                            'produto_unidade',
+                            'produto_preco_custo',
+                            'produto_preco_venda',
+                            'produto_estoque_minimo',
+                            'produto_qtde_estoque',
+                            'produto_ativo',
+                            'produto_obs',
+                        ), $this->input->post()
+                );
 
-                //Erro de validação
+                $data = html_escape($data);
+
+                $this->core_model->update('produtos', $data, array('produto_id' => $produto_id));
+
+                redirect('produtos');
+            } else {
 
                 $data = array(
                     'titulo' => 'Atualizar produto',
@@ -92,17 +106,16 @@ class Produtos extends CI_Controller {
             return TRUE;
         }
     }
-    
-    public function check_produto_preco_venda($produto_preco_venda){
+
+    public function check_produto_preco_venda($produto_preco_venda) {
         $produto_preco_custo = $this->input->post('produto_preco_custo');
-        
-         if ($produto_preco_custo > $produto_preco_venda) {
+
+        if ($produto_preco_custo > $produto_preco_venda) {
             $this->form_validation->set_message('check_produto_preco_venda', 'O preço de venda deve ser igual ou maior que o preço de custo.');
             return FALSE;
         } else {
             return TRUE;
         }
-        
     }
 
 }

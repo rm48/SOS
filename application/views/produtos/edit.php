@@ -57,7 +57,7 @@
 
                             <div class="col-md-3">
                                 <label>Categoria</label>
-                                <select class="form-control-range" name="produto_marca_id">
+                                <select class="form-control-range" name="produto_categoria_id">
                                     <?php foreach ($categorias as $categoria): ?>
                                         <option value="<?php echo $categoria->categoria_id ?>" <?php echo ($categoria->categoria_id == $produto->produto_categoria_id ? 'selected' : '') ?>><?php echo $categoria->categoria_nome ?></option>
                                     <?php endforeach; ?>
@@ -66,7 +66,7 @@
 
                             <div class="col-md-3">
                                 <label>Fornecedor</label>
-                                <select class="form-control-range" name="produto_marca_id">
+                                <select class="form-control-range" name="produto_fornecedor_id">
                                     <?php foreach ($fornecedores as $fornecedor): ?>
                                         <option value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $produto->produto_fornecedor_id ? 'selected' : '') ?>><?php echo $fornecedor->fornecedor_nome_fantasia ?></option>
                                     <?php endforeach; ?>
