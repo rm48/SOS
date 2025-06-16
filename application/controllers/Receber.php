@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('Ação não permitida');
 
-class Pagar extends CI_Controller {
+class Receber extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -18,7 +18,7 @@ class Pagar extends CI_Controller {
     public function index() {
 
         $data = array(
-            'titulo' => 'Contas a pagar',
+            'titulo' => 'Contas a receber',
             'styles' => array(
                 'vendor/datatables/dataTables.bootstrap4.min.css',
             ),
@@ -27,11 +27,11 @@ class Pagar extends CI_Controller {
                 'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/datatables/app.js'
             ),
-            'contas_pagar' => $this->financeiro_model->get_all_pagar(),
+            'contas_receber' => $this->financeiro_model->get_all_receber(),
         );
 
         $this->load->view('layout/header', $data);
-        $this->load->view('pagar/index');
+        $this->load->view('receber/index');
         $this->load->view('layout/footer');
     }
 
