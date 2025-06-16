@@ -74,7 +74,7 @@
                                 <tr>
                                     <td><?php echo $categoria->categoria_id ?></td>
                                     <td><?php echo $categoria->categoria_nome ?></td>                    
-                                    <td class="text-center"><?php echo ($categoria->categoria_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
+                                    <td class="text-center"><?php echo ($categoria->categoria_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
                                         <a title="Editar" href="<?php echo base_url('categorias/edit/' . $categoria->categoria_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
                                         <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#fornecedor-<?php echo $categoria->categoria_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>

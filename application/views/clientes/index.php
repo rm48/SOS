@@ -72,7 +72,7 @@
                                     <td><?php echo $cliente->cliente_nome ?></td>
                                     <td><?php echo $cliente->cliente_cpf_cnpj ?></td>                  
                                     <td><?php echo ($cliente->cliente_tipo == 1 ? 'Pessoa física' : 'pessoa jurídica') ?></td>
-                                    <td class="text-center"><?php echo ($cliente->cliente_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
+                                    <td class="text-center"><?php echo ($cliente->cliente_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
                                         <a title="Editar" href="<?php echo base_url('clientes/edit/' . $cliente->cliente_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
                                         <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#cliente-<?php echo $cliente->cliente_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
