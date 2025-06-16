@@ -144,7 +144,7 @@ class Fornecedores extends CI_Controller {
                 
                 if($this->db->table_exists('produtos')){
                     if($fornecedor_ativo == 0 && $this->core_model->get_by_id('produtos', array('produto_fornecedor_id' => $fornecedor_id, 'produto_ativo' => 1))){
-                        $this->session->set_flashdata('error', 'Este fornecedor está sendo utilizado em Produtos e não pode ser desativado');
+                        $this->session->set_flashdata('info', 'Este fornecedor não pode ser desativado, pois está sendo utilizado em <i class="fas fa-box-open"></i>&nbsp;Produtos');
                         redirect('fornecedores');
                     }
                 }

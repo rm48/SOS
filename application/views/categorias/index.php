@@ -17,34 +17,40 @@
             </ol>
         </nav>
 
-        <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
-
+        <?php if ($message = $this->session->flashdata('sucesso')): ?>
+            <div class="row">
                 <div class="col-md-12">
-
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong><i class="far fa-smile-wink">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                 </div> 
-
             </div><?php endif; ?>
 
-        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
-
+        <?php if ($message = $this->session->flashdata('error')): ?>
+            <div class="row">
                 <div class="col-md-12">
-
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                 </div> 
+            </div><?php endif; ?>
 
+        <?php if ($message = $this->session->flashdata('info')): ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div> 
             </div><?php endif; ?>
 
         <!-- DataTales Example -->
@@ -67,7 +73,7 @@
                             <?php foreach ($categorias as $categoria): ?>
                                 <tr>
                                     <td><?php echo $categoria->categoria_id ?></td>
-                                    <td><?php echo $categoria->categoria_nome?></td>                    
+                                    <td><?php echo $categoria->categoria_nome ?></td>                    
                                     <td class="text-center"><?php echo ($categoria->categoria_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>') ?></td>
                                     <td class="text-right">
                                         <a title="Editar" href="<?php echo base_url('categorias/edit/' . $categoria->categoria_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
@@ -76,7 +82,7 @@
 
                                 </tr>
 
-                            
+
                             <div class="modal fade" id="fornecedor-<?php echo $categoria->categoria_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -89,7 +95,7 @@
                                         <div class="modal-body">A categoria será excluída do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('categorias/del/'.$categoria->categoria_id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('categorias/del/' . $categoria->categoria_id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>
