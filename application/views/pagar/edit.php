@@ -83,7 +83,9 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                    
+                        <button type="submit" class="btn btn-primary btn-sm"<?php echo ($conta_pagar->conta_pagar_status == 1 ? 'disabled' : '') ?>><?php echo ($conta_pagar->conta_pagar_status == 1 ? 'Conta paga' : 'Salvar') ?></button>
+                    
                     <a title="Voltar" href="<?php echo base_url($this->router->fetch_class()); ?>" class="btn-success btn-sm ml-4">Voltar</a>
                 </form>
 
