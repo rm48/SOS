@@ -13,7 +13,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo base_url('produtos'); ?>">Serviços</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('produtos'); ?>">Produtos</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
             </ol>
         </nav>
@@ -33,7 +33,7 @@
 
                             <div class="col-md-2">
                                 <label>Código interno</label>
-                                <input type="text" class="form-control-range" name="produto_nome"  value="<?php echo $produto->produto_codigo; ?>"readonly="">                  
+                                <input type="text" class="form-control-range" name="produto_codigo"  value="<?php echo $produto->produto_codigo; ?>"readonly="">                  
                             </div>
 
                             <div class="col-md-10">
@@ -85,7 +85,7 @@
 
                     </fieldset>
 
-                    <fieldset class="mt-4 border p-2">
+  <fieldset class="mt-4 border p-2">
 
                         <legend class="font-small"><i class="fas fa-funnel-dollar">&nbsp;Precificação e estoque</i></legend>
 
@@ -136,7 +136,7 @@
                         </div>                  
 
 
-                    </fieldset>
+                    </fieldset>                  
 
                     <div class="mb-3 row">
 
