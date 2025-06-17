@@ -56,7 +56,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a title="Cadastrar nova categoria" href="<?php echo base_url('categorias/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
+                <a title="Cadastrar nova forma de pagamento" href="<?php echo base_url('formas_pagamt/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -64,26 +64,29 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Categoria</th>
+                                <th>Forma de pagamento</th>
+                                <th class="text-center">Aceita parcelamento</th>
                                 <th class="text-center pr-2">Ativa</th>
                                 <th class="text-right pr-4">Ações</th>
                             </tr>
                         </thead>                
                         <tbody>
-                            <?php foreach ($categorias as $categoria): ?>
+                            <!-- DataBase@controller: formas_pagamt | view var -->
+                            <?php foreach ($formas_pagamentos as $forma): ?>
                                 <tr>
-                                    <td><?php echo $categoria->categoria_id ?></td>
-                                    <td><?php echo $categoria->categoria_nome ?></td>                    
-                                    <td class="text-center"><?php echo ($categoria->categoria_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
+                                    <td><?php echo $forma->forma_pagamento_id ?></td>
+                                    <td><?php echo $forma->forma_pagamento_nome ?></td>                    
+                                    <td class="text-center"><?php echo ($forma->forma_pagamento_aceita_parc == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
+                                    <td class="text-center"><?php echo ($forma->forma_pagamento_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
-                                        <a title="Editar" href="<?php echo base_url('categorias/edit/' . $categoria->categoria_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#categoria-<?php echo $categoria->categoria_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                        <a title="Editar" href="<?php echo base_url('formas_pagamt/edit/' . $forma->forma_pagamento_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#forma-<?php echo $forma->forma_pagamento_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
                                     </td>
 
                                 </tr>
 
 
-                            <div class="modal fade" id="fornecedor-<?php echo $categoria->categoria_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="fornecedor-<?php echo $forma->forma_pagamento_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -92,10 +95,10 @@
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">A categoria será excluída do sistema.</div>
+                                        <div class="modal-body">A forma de pagamento será excluída do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('categorias/del/' . $categoria->categoria_id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('formas_pagamt/del/' . $forma->forma_id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>

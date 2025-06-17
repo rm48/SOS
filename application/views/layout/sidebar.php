@@ -30,7 +30,7 @@
             <a title="Gerenciar clientes"class="collapse-item" href="<?php echo base_url('clientes'); ?>"><i class="fas fa-user-tie text-gray-900"></i>&nbsp;&nbsp;Clientes</a>
             <a title="Gerenciar fornecedores" class="collapse-item" href="<?php echo base_url('fornecedores'); ?>"><i class="fas fa-user-tag text-gray-900"></i>&nbsp;&nbsp;Fornecedores</a>
             <a title="Gerenciar vendedores" class="collapse-item" href="<?php echo base_url('vendedores'); ?>"><i class="fas fa-user-secret text-gray-900"></i>&nbsp;&nbsp;Vendedores</a>
-            <a title="Gerenciar serviços" class="collapse-item" href="<?php echo base_url('servicos'); ?>"><i class="fas fa-laptop text-gray-900"></i>&nbsp;&nbsp;Serviços</a>
+            <a title="Gerenciar serviços" class="collapse-item" href="<?php echo base_url('servicos'); ?>"><i class="fas fa-laptop text-gray-900"></i>&nbsp;&nbsp;Serviços</a>           
           </div>
         </div>
       </li>
@@ -60,7 +60,7 @@
             <h6 class="collapse-header">Escolha uma opção:</h6>
             <a title="Gerenciar contas a pagar"class="collapse-item" href="<?php echo base_url('pagar'); ?>"><i class="fas fa-file-excel text-gray-900"></i>&nbsp;&nbsp;Contas a pagar</a>
             <a title="Gerenciar contas a receberr"class="collapse-item" href="<?php echo base_url('receber'); ?>"><i class="fas fa-hand-holding-usd text-gray-900"></i>&nbsp;&nbsp;Contas a receber</a>
-  
+            <a title="Gerenciar formas de pagamento" class="collapse-item" href="<?php echo base_url('formas_pagamt'); ?>"><i class="fas fa-cash-register text-gray-900"></i>&nbsp;&nbsp;Formas de pagamento</a>
           </div>
         </div>
       </li>  
