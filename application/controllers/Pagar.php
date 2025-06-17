@@ -87,6 +87,7 @@ class Pagar extends CI_Controller {
     }
 
     public function edit($conta_pagar_id = NULL) {
+       
         if (!$conta_pagar_id || !$this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id))) {
             $this->session->set_flashdata('error', 'Conta não encontrada');
             redirect('pagar');
@@ -123,7 +124,7 @@ class Pagar extends CI_Controller {
             } else {
 
                 $data = array(
-                    'titulo' => 'Contas a pagar',
+                    'titulo' => 'Editar contas',
                     'styles' => array(
                         'vendor/select2/select2.min.css',
                     ),
