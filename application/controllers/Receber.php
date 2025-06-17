@@ -61,13 +61,13 @@ class Receber extends CI_Controller {
 
             $data = html_escape($data);
 
-            $this->core_model->insert('contas_receber', $data, array('conta_receber_id' => $conta_receber_id));
+            $this->core_model->insert('contas_receber', $data);
 
             redirect('receber');
         } else {
 
             $data = array(
-                'titulo' => 'Contas a receber',
+                'titulo' => 'Cadastrar conta',
                 'styles' => array(
                     'vendor/select2/select2.min.css',
                 ),
@@ -77,7 +77,7 @@ class Receber extends CI_Controller {
                     'vendor/select2/select2.min.js',
                     'vendor/select2/app.js',
                 ),              
-                'clientes' => $this->core_model->get_all('clientes'),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
             );
 
             $this->load->view('layout/header', $data);
@@ -146,16 +146,19 @@ class Receber extends CI_Controller {
     
     
     public function del($conta_receber_id = NULL) {
+        
+       
+        
         if (!$conta_receber_id || !$this->core_model->get_by_id('contas_receber', array('conta_receber_id' => $conta_receber_id))) {
             $this->session->set_flashdata('error', 'Conta não encontrada');
             redirect('receber');
-        }
-         if ($this->core_model->get_by_id('contas_receber', array('conta_receber_id' => $conta_receber_id, 'conta_receber_status => 0'))) {
+        }      
+        
+        if ($this->core_model->get_by_id('contas_receber', array('conta_receber_id' => $conta_receber_id, 'conta_receber_status' => 0))) {    
             $this->session->set_flashdata('info', 'Esta conta não pode ser excluída, pois ainda está em aberto');
             redirect('receber');
         }
         else {
-
             $this->core_model->delete('contas_receber', array('conta_receber_id' => $conta_receber_id));
             redirect('receber');
         }

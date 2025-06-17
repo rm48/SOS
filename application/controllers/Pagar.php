@@ -151,12 +151,11 @@ class Pagar extends CI_Controller {
             $this->session->set_flashdata('error', 'Conta não encontrada');
             redirect('pagar');
         }
-         if ($this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id, 'conta_pagar_status => 0'))) {
+         if ($this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id, 'conta_pagar_status' => 0))) {
             $this->session->set_flashdata('info', 'Esta conta não pode ser excluída, pois ainda está em aberto');
             redirect('pagar');
         }
         else {
-
             $this->core_model->delete('contas_pagar', array('conta_pagar_id' => $conta_pagar_id));
             redirect('pagar');
         }
