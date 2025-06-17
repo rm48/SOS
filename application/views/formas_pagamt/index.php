@@ -71,7 +71,11 @@
                             </tr>
                         </thead>                
                         <tbody>
-                            <!-- DataBase@controller: formas_pagamt | view var -->
+                            
+                            <!-- ****************************************************************************** -->
+                            <!-- DataBase@controller formas_pagamt: $formas_pagamentos | view index var: $forma -->
+                            <!-- ****************************************************************************** -->
+                            
                             <?php foreach ($formas_pagamentos as $forma): ?>
                                 <tr>
                                     <td><?php echo $forma->forma_pagamento_id ?></td>
