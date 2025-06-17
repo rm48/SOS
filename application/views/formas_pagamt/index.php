@@ -43,11 +43,11 @@
 
         <?php if ($message = $this->session->flashdata('info')): ?>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="col-md-6">
+                    <div class="alert alert-warning alert-dismissible fade show text-gray-900" role="alert">
                         <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true" class="text-gray-900">&times;</span>
                         </button>
                     </div>
                 </div> 
@@ -56,7 +56,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a title="Cadastrar nova forma de pagamento" href="<?php echo base_url('formas_pagamt/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
+                <a title="Cadastrar nova forma de pagamento" href="<?php echo base_url('modulo/add'); ?>" class="btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -84,13 +84,13 @@
                                     <td class="text-center"><?php echo ($forma->forma_pagamento_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
                                         <a title="Editar" href="<?php echo base_url('formas_pagamt/edit/' . $forma->forma_pagamento_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#forma-<?php echo $forma->forma_pagamento_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#forma-<?php echo $forma->forma_pagamento_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>                                       
                                     </td>
 
                                 </tr>
 
 
-                            <div class="modal fade" id="fornecedor-<?php echo $forma->forma_pagamento_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="forma-<?php echo $forma->forma_pagamento_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -102,7 +102,7 @@
                                         <div class="modal-body">A forma de pagamento será excluída do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('formas_pagamt/del/' . $forma->forma_id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('formas_pagamt/del/' . $forma->forma_pagamento_id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>
