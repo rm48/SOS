@@ -21,7 +21,7 @@ class Ord_serv_model extends CI_Model {
 
     public function get_all_serv_by_order($ordem_servico_id = NULL) {
 
-        if ($ordemm_servico_id) {
+        if ($ordem_servico_id) {
 
             $this->db->select([
                 'ordem_tem_servicos.*',
@@ -49,7 +49,8 @@ class Ord_serv_model extends CI_Model {
         $this->db->select([
             'ordens_servicos.*',
             'clientes.cliente_id',
-            'clientes.cliente_nome',
+            'clientes.cliente_cpf_cnpj',
+            'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
             'formas_pagamentos.forma_pagamento_id',
             'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
         ]);
