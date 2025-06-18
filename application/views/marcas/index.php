@@ -75,13 +75,13 @@
                                     <td class="text-center"><?php echo ($marca->marca_ativa == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
                                         <a title="Editar" href="<?php echo base_url('marcas/edit/' . $marca->marca_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
-                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#fornecedor-<?php echo $marca->marca_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                                        <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#marca-<?php echo $marca->marca_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a>
                                     </td>
 
                                 </tr>
 
                             
-                            <div class="modal fade" id="fornecedor-<?php echo $marca->marca_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="marca-<?php echo $marca->marca_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
