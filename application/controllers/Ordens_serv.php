@@ -18,7 +18,7 @@ class Ordens_serv extends CI_Controller {
     public function index() {
 
         $data = array(
-            'titulo' => 'Ordens de servico',
+            'titulo' => 'Ordens de serviço',
             'styles' => array(
                 'vendor/datatables/dataTables.bootstrap4.min.css',
             ),

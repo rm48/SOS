@@ -66,7 +66,7 @@
                                 <th>Cliente</th>
                                 <th>Forma de pagamento</th>
                                 <th>Valor total</th>
-                                <th>Situação</th>
+                                <th class="text-center">Situação</th>
                                 <th class="text-right pr-4">Ações</th>
                             </tr>
                         </thead>                
@@ -96,7 +96,7 @@
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">O serviço será excluído do sistema.</div>
+                                        <div class="modal-body">A ordem de serviço será excluída do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
                                             <a class="btn btn-danger btn-sm" href="<?php echo base_url('os/del/'.$os->ordem_servico_id); ?>">Sim</a>
