@@ -11,7 +11,7 @@ class Ordens_serv extends CI_Controller {
             $this->session->set_flashdata('info', 'Sua sessão expirou.');
             redirect('login');
         }
-        
+
         $this->load->model('ord_serv_model');
     }
 
@@ -29,7 +29,7 @@ class Ordens_serv extends CI_Controller {
             ),
             'ordens_servicos' => $this->ord_serv_model->get_all(),
         );
-        
+
 //        echo '<pre>';
 //        print_r($data['ordens_servicos']);
 //        exit();
@@ -38,4 +38,39 @@ class Ordens_serv extends CI_Controller {
         $this->load->view('Ordens_serv/index');
         $this->load->view('layout/footer');
     }
+
+    public function edit($ordem_servico_id = NULL) {
+
+        if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id))) {
+            $this->session->set_flashdata('error', 'Ordem de serviço não encontrada');
+            redirect('os');
+        } else {
+
+            $data = array(
+                'titulo' => 'Atualizar ordens de serviço',
+                'styles' => array(
+                    'vendor/select2/select2.min.css',
+                    'vendor/autocomplete/jquery-ui.css',
+                    'vendor/autocomplete/estilos.css',
+                ),
+                'scripts' => array(
+                    'vendor/autocomplete/jquery-migrate.js',
+                    'vendor/calcx/jquery-calx-sample-2.2.8.min.js',
+                    'vendor/calcx/os.js',
+                    'vendor/select2/select2.min.js',
+                    'vendor/select2/app.js',
+                    'vendor/autocomplete/jquery-ui.js',
+                ),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
+                'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1)),
+                
+                
+            );
+            $ordem_servico = $data['ordem_servico'] = $this->ord_serv_model->get_by_id($ordem_servico_id);
+            echo '<pre>';
+            print_r($ordem_servico);
+            exit();
+        }
+    }
+
 }
