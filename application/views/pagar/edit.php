@@ -34,7 +34,7 @@
 
                             <div class="col-md-6">
                                 <label>Fornecedor</label>
-                                <select class="form-control-range" name="conta_pagar_fornecedor_id">
+                                <select class="form-control-range contas_pagar" name="conta_pagar_fornecedor_id">
                                     <?php foreach ($fornecedores as $fornecedor): ?>
                                         <option value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $conta_pagar->conta_pagar_fornecedor_id ? 'selected' : '') ?>><?php echo $fornecedor->fornecedor_nome_fantasia ?></option>
                                     <?php endforeach; ?>
@@ -65,7 +65,7 @@
                         </div>
                         
                          <div class="mb-3 row">                       
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="padding-left: 35%">
                                 <label>Observações</label>
                                 <textarea class="form-control-range" name="conta_pagar_obs"><?php echo $conta_pagar->conta_pagar_obs; ?></textarea>
                                 <?php echo form_error('conta_pagar_obs', '<small class="form-text text-danger">', '</small>'); ?>
