@@ -21,7 +21,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
 
-                <form class="user" action="" id="form" name="form_edit" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                <form class="form" action="" id="form" name="form_edit" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 
 
                     <fieldset id="vendas" class="mt-4 border p-2">
