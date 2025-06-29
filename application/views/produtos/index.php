@@ -16,37 +16,7 @@
             </ol>
         </nav>
 
-        <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
-                <div>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><i class="far fa-smile-wink">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
-        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
-                <div>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?> 
-        <?php if ($message = $this->session->flashdata('info')): ?>
-            <div class="row">
-                <div>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"  class="text-gray-900">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
+        <?php $this->load->view('layout/message'); ?>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -73,12 +43,12 @@
                             <?php foreach ($produtos as $produto): ?>
                                 <tr>
                                     <td><?php echo $produto->produto_id ?></td>
-                                    <td><?php echo $produto->produto_codigo?></td>
-                                    <td><?php echo $produto->produto_descricao?></td>
-                                    <td><?php echo $produto->produto_marca?></td> 
-                                    <td><?php echo $produto->produto_categoria?></td>
-                                    <td class="text-center"><?php echo '<span class="badge badge-dark btn-sm">'.$produto->produto_estoque_minimo.'</span>'?></td>
-                                    <td class="text-center"><?php echo ($produto->produto_estoque_minimo >= $produto->produto_qtde_estoque ? '<span class="badge badge-warning btn-sm text-gray-900">'.$produto->produto_qtde_estoque.'</span>' : '<span class="badge badge-success btn-sm">'.$produto->produto_qtde_estoque.'</span>')  ?></td>
+                                    <td><?php echo $produto->produto_codigo ?></td>
+                                    <td><?php echo $produto->produto_descricao ?></td>
+                                    <td><?php echo $produto->produto_marca ?></td> 
+                                    <td><?php echo $produto->produto_categoria ?></td>
+                                    <td class="text-center"><?php echo '<span class="badge badge-dark btn-sm">' . $produto->produto_estoque_minimo . '</span>' ?></td>
+                                    <td class="text-center"><?php echo ($produto->produto_estoque_minimo >= $produto->produto_qtde_estoque ? '<span class="badge badge-warning btn-sm text-gray-900">' . $produto->produto_qtde_estoque . '</span>' : '<span class="badge badge-success btn-sm">' . $produto->produto_qtde_estoque . '</span>') ?></td>
                                     <td class="text-center"><?php echo ($produto->produto_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
                                         <a title="Editar" href="<?php echo base_url('produtos/edit/' . $produto->produto_id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
@@ -87,7 +57,7 @@
 
                                 </tr>
 
-                            
+
                             <div class="modal fade" id="produto-<?php echo $produto->produto_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -100,7 +70,7 @@
                                         <div class="modal-body">O produto será excluída do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('produtos/del/'.$produto->produto_id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('produtos/del/' . $produto->produto_id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>

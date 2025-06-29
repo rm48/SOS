@@ -17,39 +17,7 @@
             </ol>
         </nav>
 
-        <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><i class="far fa-smile-wink">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
-
-        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
-        
-        <?php if ($message = $this->session->flashdata('info')): ?>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
+        <?php $this->load->view('layout/message'); ?>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -84,7 +52,7 @@
 
                                 </tr>
 
-                            
+
                             <div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -97,7 +65,7 @@
                                         <div class="modal-body">O usuário será excluído do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuarios/del/'.$user->id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuarios/del/' . $user->id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>

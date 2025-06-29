@@ -29,19 +29,19 @@
 
                         <div class="col-md-4">
                             <label>Nome</label>
-                            <input type="text" class="form-control" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name; ?>">
+                            <input type="text" class="form-control-range" name="first_name" placeholder="Seu nome" value="<?php echo $usuario->first_name; ?>">
                             <?php echo form_error('first_name', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                          <div class="col-md-4">
                             <label>Sobrenome</label>
-                            <input type="text" class="form-control" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name; ?>">
+                            <input type="text" class="form-control-range" name="last_name" placeholder="Seu sobrenome" value="<?php echo $usuario->last_name; ?>">
                             <?php echo form_error('last_name', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                         <div class="col-md-4">
                             <label>E-mail (Login)</label>
-                            <input type="email" class="form-control" name="email" placeholder="Seu e-mail (Login)" value="<?php echo $usuario->email; ?>">
+                            <input type="email" class="form-control-range" name="email" placeholder="Seu e-mail (Login)" value="<?php echo $usuario->email; ?>">
                             <?php echo form_error('email', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label>Usuário</label>
-                            <input type="text" class="form-control" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>">
+                            <input type="text" class="form-control-range" name="username" placeholder="Seu usuário" value="<?php echo $usuario->username; ?>">
                             <?php echo form_error('username', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         <div class="col-md-4">            
@@ -58,7 +58,7 @@
                             
                             <label>Ativo</label>
                             
-                            <select class="form-control" name="active">
+                            <select class="form-control-range" name="active">
                                 
                                 <option value="0"<?php echo ($usuario->active == 0) ? 'selected' : '' ?>>Não</option>
                                 <option value="1"<?php echo ($usuario->active == 1) ? 'selected' : '' ?>>Sim</option>
@@ -70,7 +70,7 @@
                         <div class="col-md-4">
                             <label>Perfil de acesso</label>
                             
-                            <select class="form-control" name="perfil_usuario">
+                            <select class="form-control-range" name="perfil_usuario">
                                 
                                 <option value="2"<?php echo ($perfil_usuario->id == 2) ? 'selected' : '' ?>>Vendedor</option>
                                 <option value="1"<?php echo ($perfil_usuario->id == 1) ? 'selected' : '' ?>>Administrador</option>
@@ -84,13 +84,13 @@
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label>Senha</label>
-                            <input type="password" class="form-control" name="password" placeholder="Sua senha">
+                            <input type="password" class="form-control-range" name="password" placeholder="Sua senha">
                             <?php echo form_error('password', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                         
                         <div class="col-md-6">
                             <label>Confirme</label>
-                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirme sua senha">
+                            <input type="password" class="form-control-range" name="confirm_password" placeholder="Confirme sua senha">
                             <?php echo form_error('confirm_password', '<small class="form-text text-danger">','</small>'); ?>
                         </div>
                        

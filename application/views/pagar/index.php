@@ -16,37 +16,7 @@
             </ol>
         </nav>
 
-        <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
-                <div>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><i class="far fa-smile-wink">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
-        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
-                <div>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>      
-        <?php if ($message = $this->session->flashdata('info')): ?>
-            <div class="row">
-                <div>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true" class="text-gray-900">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
+        <?php $this->load->view('layout/message'); ?>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -71,23 +41,22 @@
                             <?php foreach ($contas_pagar as $conta): ?>
                                 <tr>
                                     <td><?php echo $conta->conta_pagar_id ?></td>
-                                    <td><?php echo $conta->fornecedor?></td>
-                                    <td><?php echo 'R$&nbsp;'.$conta->conta_pagar_valor?></td>
+                                    <td><?php echo $conta->fornecedor ?></td>
+                                    <td><?php echo 'R$&nbsp;' . $conta->conta_pagar_valor ?></td>
                                     <td><?php echo formata_data_banco_sem_hora($conta->conta_pagar_data_vencimento); ?></td> 
                                     <td><?php echo ($conta->conta_pagar_status == 1 ? formata_data_banco_com_hora($conta->conta_pagar_data_pagamento) : 'Aguardando pagamento') ?></td>
-                                   
+
                                     <td class="text-center">
-                                        
-                                        <?php 
-                                        
-                                        if($conta->conta_pagar_status == 1){
+
+                                        <?php
+                                        if ($conta->conta_pagar_status == 1) {
                                             echo '<span class="badge badge-success btn-sm">Paga</span>';
-                                        }else if(strtotime ($conta->conta_pagar_data_vencimento) > strtotime(date('Y-m-d'))){
+                                        } else if (strtotime($conta->conta_pagar_data_vencimento) > strtotime(date('Y-m-d'))) {
                                             echo '<span class="badge badge-dark btn-sm">A pagar</span>';
-                                        }else if(strtotime ($conta->conta_pagar_data_vencimento) == strtotime(date('Y-m-d'))){
+                                        } else if (strtotime($conta->conta_pagar_data_vencimento) == strtotime(date('Y-m-d'))) {
                                             echo '<span class="badge badge-warning btn-sm text-gray-900">Vence hoje</span>';
-                                        }else{
-                                             echo '<span class="badge badge-danger btn-sm">Vencida</span>';
+                                        } else {
+                                            echo '<span class="badge badge-danger btn-sm">Vencida</span>';
                                         }
                                         ?>
                                     </td>
@@ -98,7 +67,7 @@
 
                                 </tr>
 
-                            
+
                             <div class="modal fade" id="conta-<?php echo $conta->conta_pagar_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -111,7 +80,7 @@
                                         <div class="modal-body">A conta será excluída do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('pagar/del/'.$conta->conta_pagar_id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('pagar/del/' . $conta->conta_pagar_id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>

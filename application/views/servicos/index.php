@@ -17,37 +17,7 @@
             </ol>
         </nav>
 
-        <?php if ($message = $this->session->flashdata('sucesso')): ?><div class="row">
-                <div>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><i class="far fa-smile-wink">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
-        <?php if ($message = $this->session->flashdata('error')): ?><div class="row">
-                <div>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>   
-        <?php if ($message = $this->session->flashdata('info')): ?>
-            <div class="row">
-                <div>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle">&nbsp;&nbsp;</i><?php echo $message; ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true" class="text-gray-900">&times;</span>
-                        </button>
-                    </div>
-                </div> 
-            </div><?php endif; ?>
+        <?php $this->load->view('layout/message'); ?>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -71,8 +41,8 @@
                             <?php foreach ($servicos as $servico): ?>
                                 <tr>
                                     <td><?php echo $servico->servico_id ?></td>
-                                    <td><?php echo $servico->servico_nome?></td>
-                                    <td><?php echo 'R$&nbsp;'.$servico->servico_preco ?></td>
+                                    <td><?php echo $servico->servico_nome ?></td>
+                                    <td><?php echo 'R$&nbsp;' . $servico->servico_preco ?></td>
                                     <td><?php echo word_limiter($servico->servico_descricao, 10) ?></td>                      
                                     <td class="text-center"><?php echo ($servico->servico_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm text-gray-900">Não</span>') ?></td>
                                     <td class="text-right">
@@ -82,7 +52,7 @@
 
                                 </tr>
 
-                            
+
                             <div class="modal fade" id="servico-<?php echo $servico->servico_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -95,7 +65,7 @@
                                         <div class="modal-body">O serviço será excluído do sistema.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('servicos/del/'.$servico->servico_id); ?>">Sim</a>
+                                            <a class="btn btn-danger btn-sm" href="<?php echo base_url('servicos/del/' . $servico->servico_id); ?>">Sim</a>
                                         </div>
                                     </div>
                                 </div>
