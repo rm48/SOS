@@ -150,7 +150,15 @@ class Ordem_servicos extends CI_Controller {
 
 
             $this->form_validation->set_rules('ordem_servico_cliente_id', '', 'required');
-            $this->form_validation->set_rules('ordem_servico_forma_pagamento_id', '', 'required');
+
+            $ordem_servico_status = $this->input->post('ordem_servico_status');
+
+            if ($ordem_servico_status == 1) {
+                $this->form_validation->set_rules('ordem_servico_forma_pagamento_id', '', 'required');
+            }
+
+
+
             $this->form_validation->set_rules('ordem_servico_equipamento', 'Marca', 'trim|required|min_length[2]|max_length[80]');
             $this->form_validation->set_rules('ordem_servico_marca_equipamento', 'Marca', 'trim|required|min_length[2]|max_length[80]');
             $this->form_validation->set_rules('ordem_servico_modelo_equipamento', 'Modelo', 'trim|required|min_length[2]|max_length[80]');
@@ -177,7 +185,11 @@ class Ordem_servicos extends CI_Controller {
                         ), $this->input->post()
                 );
 
-                $data['ordem_servico_valor_total'] = trim(preg_replace('/\$', '', $ordem_servico_valor_total));
+                if ($ordem_servico_status == 0) {
+                    unset($data['ordem_servico_forma_pagamento_id']);
+                }
+
+                $data['ordem_servico_valor_total'] = trim(preg_replace('/\$/', '', $ordem_servico_valor_total));
 
                 $data = html_escape($data);
 
@@ -258,6 +270,22 @@ class Ordem_servicos extends CI_Controller {
         }
     }
 
+    public function del($ordem_servico_id = NULL) {
+
+        if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id))) {
+            $this->session->set_flashdata('error', 'Ordem de serviço não encontrada');
+            redirect('os');
+        }
+
+        if ($this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id, 'ordem_servico_status' => 0))) {
+            $this->session->set_flashdata('error', 'Não é possível excluir uma ordem de serviço em aberto');
+            redirect('os');
+        }
+
+        $this->core_model->delete('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id));
+        redirect('os');
+    }
+
     public function imprimir($ordem_servico_id = NULL) {
 
         if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id))) {
@@ -285,10 +313,10 @@ class Ordem_servicos extends CI_Controller {
 
             $empresa = $this->core_model->get_by_id('sistema', array('sistema_id' => 1));
 
-            
+
 
             $ordem_servico = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
-            
+
 //            echo '<pre>';
 //            print_r($ordem_servico);
 //            exit();
