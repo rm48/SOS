@@ -71,7 +71,7 @@ class Ordem_servicos extends CI_Controller {
 
             //RECUPERAR ID
 
-            $id_ordem_serviço = $this->session->userdata('last_id');
+            $id_ordem_servico = $this->session->userdata('last_id');
 
 
             $servico_id = $this->input->post('servico_id');
@@ -107,7 +107,7 @@ class Ordem_servicos extends CI_Controller {
 
             //PDF
 
-            redirect('os');
+            redirect('os/imprimir/' . $id_ordem_servico);
         } else {
 
             //Erro de validação
@@ -131,7 +131,9 @@ class Ordem_servicos extends CI_Controller {
                 ),
                 'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
             );
-
+//            echo '<pre>';
+//            print_r(ordem_$servico);
+//            exit();
 
             $this->load->view('layout/header', $data);
             $this->load->view('Ordem_servicos/add');
@@ -265,7 +267,8 @@ class Ordem_servicos extends CI_Controller {
 
             $data = array(
                 'titulo' => 'Escolha uma opção',
-                    //enviar dados da ordem
+                //enviar dados da ordem
+                'ordem_servico' => $this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id)),
             );
 
             $this->load->view('layout/header', $data);
@@ -282,8 +285,13 @@ class Ordem_servicos extends CI_Controller {
 
             $empresa = $this->core_model->get_by_id('sistema', array('sistema_id' => 1));
 
-            $ordem_servico = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
+            
 
+            $ordem_servico = $this->ordem_servicos_model->get_by_id($ordem_servico_id);
+            
+//            echo '<pre>';
+//            print_r($ordem_servico);
+//            exit();
             $file_name = 'O.S&nbsp;' . $ordem_servico->ordem_servico_id;
 
 
@@ -316,11 +324,11 @@ class Ordem_servicos extends CI_Controller {
             $html .= '<p align="right" style="font-size: 12px">O.S N°&nbsp;' . $ordem_servico->ordem_servico_id . '</p>';
 
             $html .= '<p>'
-                    . '<strong>Cliente: </strong>'. $ordem_servico->cliente_nome_completo.'<br/>'
-                    . '<strong>CPF: </strong>'. $ordem_servico->cliente_cpf_cnpj.'<br/>'
-                    . '<strong>Celular: </strong>'. $ordem_servico->cliente_celular.'<br/>'
-                    . '<strong>Data de emissão: </strong>'. formata_data_banco_com_hora($ordem_servico->ordem_servico_data_emissao).'<br/>'
-                    . '<strong>Forma de pagamento: </strong>'. ($ordem_servico->ordem_servico_status == 1 ? $ordem_servico->foma_pagamento : 'Em aberto').'<br/>'
+                    . '<strong>Cliente: </strong>' . $ordem_servico->cliente_nome_completo . '<br/>'
+                    . '<strong>CPF: </strong>' . $ordem_servico->cliente_cpf_cnpj . '<br/>'
+                    . '<strong>Celular: </strong>' . $ordem_servico->cliente_celular . '<br/>'
+                    . '<strong>Data de emissão: </strong>' . formata_data_banco_com_hora($ordem_servico->ordem_servico_data_emissao) . '<br/>'
+                    . '<strong>Forma de pagamento: </strong>' . ($ordem_servico->ordem_servico_status == 1 ? $ordem_servico->forma_pagamento : 'Em aberto') . '<br/>'
                     . '</p>';
 
             $html .= '<hr>';
