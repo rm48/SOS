@@ -25,6 +25,7 @@ class Ordem_servicos_model extends CI_Model {
             'ordens_servicos.*',
             'clientes.cliente_id',
             'clientes.cliente_cpf_cnpj',
+            'clientes.cliente_celular',
             'CONCAT (clientes.cliente_nome, " ", clientes.cliente_sobrenome) as cliente_nome_completo',
             'formas_pagamentos.forma_pagamento_id',
             'formas_pagamentos.forma_pagamento_nome as forma_pagamento',
@@ -72,7 +73,7 @@ class Ordem_servicos_model extends CI_Model {
                 'FORMAT(SUM(REPLACE(ordem_ts_valor_unitario, ",", "")), 2) as ordem_ts_valor_unitario',
                 'FORMAT(SUM(REPLACE(ordem_ts_valor_total, ",", "")), 2) as ordem_ts_valor_total',
                 'servicos.servico_id',
-                'servicos.servico_descricao',
+                'servicos.servico_nome',
             ]);
             
             $this->db->join('servicos', 'servico_id = ordem_ts_id_servico', 'LEFT');
@@ -84,12 +85,12 @@ class Ordem_servicos_model extends CI_Model {
         }
     }
     
-    public function get_valor_inal_os($ordem_servico_id = NULL) {
+    public function get_valor_final_os($ordem_servico_id = NULL) {
         
         if($ordem_servico_id){
             
             $this->db->select([
-                 'FORMAT(SUM(REPLACE(ordem_ts_valor_total, ",", "")), 2) as os_ts_valor_total',
+                 'FORMAT(SUM(REPLACE(ordem_ts_valor_total, ",", "")), 2) as os_valor_total',
             ]);
             
             $this->db->join('servicos', 'servico_id = ordem_ts_id_servico', 'LEFT');
