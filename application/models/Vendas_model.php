@@ -19,7 +19,7 @@ class Vendas_model extends CI_Model {
         $this->db->join('vendedores', 'vendedor_id = venda_vendedor_id', 'LEFT');
         $this->db->join('formas_pagamentos', 'forma_pagamento_id = venda_forma_pagamento_id', 'LEFT');
 
-        return $this->db->get('vendas')->row();
+        return $this->db->get('vendas')->result();
     }
     
     public function get_by_id($venda_id = NULL) {
@@ -37,7 +37,7 @@ class Vendas_model extends CI_Model {
         $this->db->join('vendedores', 'vendedor_id = venda_vendedor_id', 'LEFT');
         $this->db->join('formas_pagamentos', 'forma_pagamento_id = venda_forma_pagamento_id', 'LEFT');
 
-        return $this->db->get('vendas')->result();
+        return $this->db->get('vendas')->row();
     }
 
     public function get_all_produtos_by_venda($venda_id = NULL) {
@@ -61,7 +61,7 @@ class Vendas_model extends CI_Model {
 
         if ($venda_id) {
 
-            $this->db->delete('venda_produtos', array('venda_produtos_id_venda' => $venda_id));
+            $this->db->delete('venda_produtos', array('venda_produto_id_venda' => $venda_id));
         }
     }
 
@@ -87,7 +87,7 @@ class Vendas_model extends CI_Model {
         }
     }
     
-    public function get_valor_final_vendas($ordem_servico_id = NULL) {
+    public function get_valor_final_venda($venda_id = NULL) {
         
         if($venda_id){
             
